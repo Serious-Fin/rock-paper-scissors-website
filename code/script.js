@@ -1,3 +1,6 @@
+let userHealth = 3;
+let computerHealth = 3;
+
 function getComputerChoice() {
     const computerChoices = ["rock", "paper", "scissors"];
 
@@ -53,18 +56,20 @@ function displayRoundResults(result, playerSelection, computerSelection) {
 
 function updateScore(result) {
     if (result > 0) {
-        const computerHealth = document.querySelector('div[data-player="computer"] > p.health');
-        computerHealth.textContent -= 1;
+        const computerHealthCounter = document.querySelector('div[data-player="computer"] > p.health');
+        computerHealth -= 1;
+        computerHealthCounter.textContent = computerHealth;
 
-        if (computerHealth.textContent === "0") {
+        if (computerHealth === 0) {
             winConditionMet(1);
         }
     }
     else if (result < 0) {
-        const playerHealth = document.querySelector('div[data-player="user"] > p.health');
-        playerHealth.textContent -= 1;
+        const userHealthCounter = document.querySelector('div[data-player="user"] > p.health');
+        userHealth -= 1;
+        userHealthCounter.textContent = userHealth;
 
-        if (playerHealth.textContent === "0") {
+        if (userHealth === 0) {
             winConditionMet(0);
         }
     }
@@ -103,8 +108,15 @@ function reloadPage() {
     location.reload();
 }
 
+// Adding an event listener to each of the buttons
 const choiceButtons = document.querySelectorAll('button.choiceButton');
 
 choiceButtons.forEach((button) => {
     button.addEventListener('click', playRound);
 });
+
+// Setting the health of player and computer
+const computerHealthCounter = document.querySelector('div[data-player="computer"] > p.health');
+const userHealthCounter = document.querySelector('div[data-player="user"] > p.health');
+computerHealthCounter.textContent = computerHealth;
+userHealthCounter.textContent = userHealth;
