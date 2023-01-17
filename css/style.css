@@ -1,5 +1,49 @@
+/* ----- ELEMENT SELECTORS ----- */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-family: 'VT323', monospace;
+}
+
+
+/* ----- CLASS SELECTORS ----- */
+.mainContainer {
+    background-color: rgb(223, 225, 218);
+    height: 200vh;
+    width: 100%;
+}
+
+.header {
+    height: 65vh;
+    padding: 5% 10%;
+    background-color: red;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
 .scoreDisplay {
     display: flex;
     gap: 48px;
     border: 1px solid black;
+}
+
+
+/* ----- TEXT SELECTORS ----- */
+.titleText {
+    font-size: 64px;
+    font-weight: 700;
+}
+
+.howToPlayText {
+    font-size: 32px;
+}
+
+.adviceText {
+    font-size: 24px;
 }
