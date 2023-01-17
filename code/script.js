@@ -10,65 +10,101 @@ function getRandomInt(maxInteger) {
     return Math.floor(Math.random() * maxInteger)
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(event) {
+
+    let playerSelection = this.dataset.type;
+    let computerSelection = getComputerChoice();
 
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
 
+    let result = 0;
+
     if (playerSelection == computerSelection) {
-        console.log(`Tie! You and computer both chose ${computerSelection}.`);
-        return 0;
+        result = 0;
     }
     else if (playerSelection === "rock" && computerSelection === "scissors" ||
              playerSelection === "paper" && computerSelection === "rock" ||
              playerSelection === "scissors" && computerSelection === "paper") {
-        console.log(`You win! You chose ${playerSelection} while computer chose ${computerSelection}.`);
-        return 1;
+        result = 1;
     }
     else
     {
-        console.log(`You lose... Computer chose ${computerSelection} while you chose ${playerSelection}`);
-        return -1;
+        result = -1;
     }
+
+    displayRoundResults(result, playerSelection, computerSelection);
+    updateScore(result);
 }
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
+function displayRoundResults(result, playerSelection, computerSelection) {
+    const content = document.querySelector("#outcomeDisplay > #outcomeText");
 
-    for (let i = 0; i < 5; i++)
-    {
-        console.log(`--- Round ${i + 1} ---`);
-
-        let playerSelection = prompt("Choose rock, paper of scissors");
-        let computerSelection = getComputerChoice();
-
-        let result = playRound(playerSelection, computerSelection);
-
-        if (result === 1) {
-            playerScore += 1;
-        }
-        else if (result === -1) {
-            computerScore += 1;
-        }
-
-        console.log(`Score: Human ${playerScore} | Computer ${computerScore}`);
+    if (result > 0) {
+        content.textContent = `You win! You chose ${playerSelection} while computer chose ${computerSelection}.`;
     }
-
-    console.log("----- FINAL RESULTS ARE IN -----");
-
-    console.log(`Score: Human ${playerScore} | Computer ${computerScore}`);
-
-    if (playerScore > computerScore) {
-        console.log("Human won!");
-    }
-    else if (computerScore > playerScore) {
-        console.log("Computer won...")
+    else if (result < 0) {
+        content.textContent = `You lose... You chose ${playerSelection} while computer chose ${computerSelection}.`;
     }
     else {
-        console.log("It's a tie.");
+        content.textContent = `Tie! You and computer both chose ${computerSelection}.`;
     }
 }
 
+function updateScore(result) {
+    if (result > 0) {
+        const computerHealth = document.querySelector('div[data-player="computer"] > p.health');
+        computerHealth.textContent -= 1;
 
-console.log(game());
+        if (computerHealth.textContent === "0") {
+            winConditionMet(1);
+        }
+    }
+    else if (result < 0) {
+        const playerHealth = document.querySelector('div[data-player="user"] > p.health');
+        playerHealth.textContent -= 1;
+
+        if (playerHealth.textContent === "0") {
+            winConditionMet(0);
+        }
+    }
+}
+
+function winConditionMet(outcome) {
+    // 0 - computer won; 1 - user won
+
+    // deactivate buttons
+    const choiceButtons = document.querySelectorAll('button.choiceButton');
+
+    choiceButtons.forEach((button) => {
+        button.disabled = true;
+    });
+
+    // display winner
+    const content = document.querySelector("#outcomeDisplay > #outcomeText");
+
+    if (outcome === 0) {
+        content.textContent = "You have been defeated";
+    }
+    else {
+        content.textContent = "You emerge victorious!";
+    }
+
+    // add reload page button
+    const mainContainer = document.querySelector('.mainContainer');
+    const reloadButton = document.createElement('button');
+    reloadButton.textContent = "Try again?";
+    reloadButton.addEventListener('click', reloadPage);
+
+    mainContainer.appendChild(reloadButton);
+}
+
+function reloadPage() {
+    location.reload();
+}
+
+const choiceButtons = document.querySelectorAll('button.choiceButton');
+
+choiceButtons.forEach((button) => {
+    button.addEventListener('click', playRound);
+});

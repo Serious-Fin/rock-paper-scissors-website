@@ -3,8 +3,27 @@
     <head>
         <meta charset="utf-8">
         <title>Rock Paper Scissors</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="code/script.js" defer></script>
     </head>
     <body>
-        <script src="code/script.js"></script>
+        <div class="mainContainer">
+            <button data-type="rock" class="choiceButton">Rock</button>
+            <button data-type="paper" class="choiceButton">Paper</button>
+            <button data-type="scissors" class="choiceButton">Scissors</button>
+            
+            <div id="outcomeDisplay">
+                <p id="outcomeText"></p>
+            </div>
+
+            <div class="scoreDisplay" data-player="user">
+                <p>Player health: </p>
+                <p class="health">1</p> 
+            </div>
+            <div class="scoreDisplay" data-player="computer">
+                <p>Computer health: </p>
+                <p class="health">1</p> 
+            </div>
+        </div>
     </body>
 </html>

@@ -1,0 +1,5 @@
+.scoreDisplay {
+    display: flex;
+    gap: 48px;
+    border: 1px solid black;
+}
