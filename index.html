@@ -7,7 +7,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
-        <!--<script src="code/script.js" defer></script>-->
+        <script src="code/script.js" defer></script>
     </head>
     <body>
         <div class="mainContainer">
@@ -20,10 +20,8 @@
                 </p>
                 <p class="adviceText">Scroll down to start playing</p>
             </div>
-            <!--
-            <button data-type="rock" class="choiceButton">Rock</button>
-            <button data-type="paper" class="choiceButton">Paper</button>
-            <button data-type="scissors" class="choiceButton">Scissors</button>
+            
+            
             
             <div id="outcomeDisplay">
                 <p id="outcomeText"></p>
@@ -37,9 +35,22 @@
                 <p>Computer health: </p>
                 <p class="health">1</p> 
             </div>
-            -->
+            
             <div class="content">
-                <div class="playingArea"></div>
+                <div class="playingArea">
+                    <div class="buttonContainer">
+                        <button data-type="rock" class="choiceButton" id="rockButton">Rock</button>
+                        <button data-type="paper" class="choiceButton" id="paperButton">Paper</button>
+                        <button data-type="scissors" class="choiceButton" id="scissorsButton">Scissors</button>
+                    </div>
+                    <div class="characterContainer">
+                    </div>
+                    <div class="characterContainer">
+
+                    </div>
+                </div>
+
+
                 <div class="consoleOuter">
                     <div class="consoleInner">
                         <div class="consoleTextBox">

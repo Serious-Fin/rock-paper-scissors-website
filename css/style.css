@@ -44,18 +44,20 @@ p {
     background-color: brown;
     width: 100%;
     flex: 0 1 500px;
+    display: flex;
+}
+
+.buttonContainer {
+    background-color: purple;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .consoleOuter {
-    /*
-    
-    
-    
-    
-    
-    justify-content: space-around;*/
     width: 70%;
-    /*display: flex;*/
     border: 3px solid rgb(141, 144, 156);
     flex: 0 1 150px;
     border-radius: 10px;
@@ -63,7 +65,6 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    /*padding: 10px;*/
 }
 
 .consoleInner {
@@ -78,11 +79,6 @@ p {
 }
 
 .consoleTextBox {
-    /*
-    border-left: 8px solid rgb(252, 248, 24);
-    border-right: 8px solid rgb(252, 248, 24);
-    height: 100%;
-    width: 90%;*/
     background-color: white;
     border-left: 10px solid rgb(250, 227, 28);
     border-right: 10px solid rgb(250, 227, 28);
@@ -115,4 +111,34 @@ p {
 
 #consoleText {
     font-size: 36px;
+}
+
+
+/* ----- BUTTON SELECTORS ----- */
+.choiceButton {
+    width: 150px;
+    height: 50px;
+    font-family: 'VT323', monospace;
+    color: white;
+    font-size: 32px;
+    border-radius: 10px;
+    border-width: 4px;
+}
+
+#rockButton {
+    background-color: rgb(126, 25, 25);
+    box-shadow: inset 0px 25px 10px -5px rgb(212, 61, 61);
+    border-color: rgb(184, 59, 59);
+}
+
+#paperButton {
+    background-color: rgb(120, 22, 133);
+    box-shadow: inset 0px 25px 10px -5px rgb(151, 46, 165);
+    border-color: rgb(149, 71, 160);
+}
+
+#scissorsButton {
+    background-color: rgb(17, 58, 121);
+    box-shadow: inset 0px 25px 10px -5px rgb(43, 90, 161);
+    border-color: rgb(72, 115, 180);
 }

@@ -45,16 +45,14 @@ function playRound(event) {
 }
 
 function displayRoundResults(result, playerSelection, computerSelection) {
-    const content = document.querySelector("#outcomeDisplay > #outcomeText");
-
     if (result > 0) {
-        content.textContent = `You win! You chose ${playerSelection} while computer chose ${computerSelection}.`;
+        typeToConsole(`You win! You chose ${playerSelection} while computer chose ${computerSelection}.`);
     }
     else if (result < 0) {
-        content.textContent = `You lose... You chose ${playerSelection} while computer chose ${computerSelection}.`;
+        typeToConsole(`You lose... You chose ${playerSelection} while computer chose ${computerSelection}.`);
     }
     else {
-        content.textContent = `Tie! You and computer both chose ${computerSelection}.`;
+        typeToConsole(`Tie! You and computer both chose ${computerSelection}.`);
     }
 }
 
@@ -90,13 +88,11 @@ function winConditionMet(outcome) {
     });
 
     // display winner
-    const content = document.querySelector("#outcomeDisplay > #outcomeText");
-
     if (outcome === 0) {
-        content.textContent = "You have been defeated";
+        typeToConsole("You have been defeated");
     }
     else {
-        content.textContent = "You emerge victorious!";
+        typeToConsole("You emerge victorious!");
     }
 
     // add reload page button
