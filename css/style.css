@@ -10,38 +10,38 @@ p {
 
 
 /* ----- CLASS SELECTORS ----- */
-.mainContainer {
-    background-color: rgb(223, 225, 218);
+body, html{
+    background-image: linear-gradient(to bottom, rgb(112, 188, 226), rgb(112, 211, 112));
     height: 200vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    scroll-snap-type: y proximity;
 }
 
 .header {
-    height: 65vh;
+    height: 70vh;
     padding: 5% 10%;
-    background-color: red;
     box-sizing: border-box;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    scroll-snap-align: center;
 }
 
 .content {
-    height: 80vh;
-    background-color: aquamarine;
-    padding: 0 3%;
+    height: 70vh;
+    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
     gap: 50px;
     align-items: center;
+    scroll-snap-align: center;
 }
 
 .playingArea {
-    background-color: brown;
     width: 100%;
     flex: 0 1 500px;
     display: flex;
@@ -49,20 +49,47 @@ p {
 }
 
 .buttonContainer {
-    background-color: purple;
+    background-image: url("../img/button-background.png");
+    flex-shrink: 0;
+    height: 255px;
     width: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    gap: 32px;
     align-items: center;
+    padding-bottom: 44px;
 }
 
 .characterContainer {
-    background-color: green;
     width: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+}
+
+.spriteContainer {
+    position: relative;
+    width: 100%;
+    height: 50%;
+}
+
+.healthBarContainer {
+    width: 100%;
+    height: 20%;
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+.healthBarBase {
+    width: 100%;
+    height: 10px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 7px;
+    border: 3px solid black;
+}
+
+.currentHealth {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(79, 167, 79);
 }
 
 .consoleOuter {
@@ -111,11 +138,11 @@ p {
 }
 
 .howToPlayText {
-    font-size: 32px;
+    font-size: 36px;
 }
 
 .adviceText {
-    font-size: 24px;
+    font-size: 28px;
 }
 
 #consoleText {
@@ -150,4 +177,72 @@ p {
     background-color: rgb(17, 58, 121);
     box-shadow: inset 0px 25px 10px -5px rgb(43, 90, 161);
     border-color: rgb(72, 115, 180);
+}
+
+.retryButton {
+    width: 100px;
+    height: 40px;
+    font-family: 'VT323', monospace;
+    color: black;
+    font-size: 36px;
+    margin-top: 10px;
+    background-color: white;
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+.retryButton:hover {
+    font-weight: 700;
+}
+
+
+/* ----- IMAGE SELECTORS ----- */
+.characterSprite {
+    position: absolute;
+    bottom: 60px;
+    right: 105px;
+    transition: .25s ease;
+}
+
+.groundSprite {
+    width: 300px;
+    height: auto;
+    position: absolute;
+    image-rendering: pixelated;
+    bottom: 35px;
+    left: 50px;
+    
+}
+
+/* ----- ANIMATIONS ----- */
+.userAttack {
+    bottom: 70px;
+    right: 90px;
+    transform: scale(1.05);
+    content: url("../img/user-attack.png");
+}
+
+.userDamage {
+    bottom: 55px;
+    right: 115px;
+    transform: scale(0.95);
+    content: url("../img/user-damage.png");
+}
+
+.computerAttack {
+    bottom: 55px;
+    right: 115px;
+    transform: scale(1.05);
+    content: url("../img/computer-attack.png");
+}
+
+.computerDamage {
+    bottom: 55px;
+    right: 95px;
+    transform: scale(0.95);
+    content: url("../img/computer-damage.png");
+}
+
+.computerDeath, .userDeath {
+    opacity: 0;
 }

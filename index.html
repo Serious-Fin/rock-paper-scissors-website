@@ -10,66 +10,58 @@
         <script src="code/script.js" defer></script>
     </head>
     <body>
-        <div class="mainContainer">
-            <div class="header">
-                <p class="titleText">ROCK, PAPER, SCISSORS - GO</p>
-                <p class="howToPlayText">
-                    Play the game by choosing one of three different attacks: rock, paper or scissors. Your opponent 
-                    will do the same and the loser will take one point of damage. Lose all of your health and you're out.
-                    Good luck!
-                </p>
-                <p class="adviceText">Scroll down to start playing</p>
-            </div>
-            
-            
-            <!--REMOVE BOTTOM PART LATER-->
-            <div id="outcomeDisplay">
-                <p id="outcomeText"></p>
-            </div>
+        <div class="header">
+            <p class="titleText">ROCK, PAPER, SCISSORS - GO</p>
+            <p class="howToPlayText">
+                Play the game by choosing one of three different attacks: rock, paper or scissors. Your opponent 
+                will do the same and the loser will take one point of damage. Lose all of your health and you're out.
+                Good luck!
+            </p>
+            <p class="adviceText">Scroll down to start playing</p>
+        </div>
+        
+        <div class="content">
+            <div class="playingArea">
+                <div class="buttonContainer">
+                    <button data-type="rock" class="choiceButton" id="rockButton">Rock</button>
+                    <button data-type="paper" class="choiceButton" id="paperButton">Paper</button>
+                    <button data-type="scissors" class="choiceButton" id="scissorsButton">Scissors</button>
+                </div>
 
-            <div class="scoreDisplay" data-player="user">
-                <p>Player health: </p>
-                <p class="health">1</p> 
-            </div>
-            <div class="scoreDisplay" data-player="computer">
-                <p>Computer health: </p>
-                <p class="health">1</p> 
-            </div>
-            <!--Remove TOP PART LATER-->
-            
-            <div class="content">
-                <div class="playingArea">
-                    <div class="buttonContainer">
-                        <button data-type="rock" class="choiceButton" id="rockButton">Rock</button>
-                        <button data-type="paper" class="choiceButton" id="paperButton">Paper</button>
-                        <button data-type="scissors" class="choiceButton" id="scissorsButton">Scissors</button>
-                    </div>
-                    <div class="characterContainer">
-                        <div class="spriteContainer">
-                            <p>sprites</p>
-                        </div>
-                        <div class="healthbarContainer">
-                            <p>Health bar</p>
+                <!-- USER CHARACTER AREA -->
+                <div class="characterContainer">
+                    <div class="healthBarContainer">
+                        <div class="healthBarBase">
+                            <div class="currentHealth" data-player="user"></div>
                         </div>
                     </div>
-                    <div class="characterContainer">
-                        <div class="spriteContainer">
-                            <p>sprites</p>
-                        </div>
-                        <div class="healthbarContainer">
-                            <p>Health bar</p>
-                        </div>
+                    <div class="spriteContainer">
+                        <img src="img/ground.png" alt="ground tile" class="groundSprite">
+                        <img src="img/user-idle.png" alt="cute pokemon-like monster" class="characterSprite" data-type="user">
                     </div>
                 </div>
 
-
-                <div class="consoleOuter">
-                    <div class="consoleInner">
-                        <div class="consoleTextBox">
-                            <p id="consoleText">
-                                ...
-                            </p>
+                <!-- COMPUTER CHARACTER AREA -->
+                <div class="characterContainer">
+                    <div class="spriteContainer">
+                        <img src="img/ground.png" alt="ground tile" class="groundSprite">
+                        <img src="img/computer-idle.png" alt="cute pokemon-like monster" class="characterSprite" data-type="computer">
+                    </div>
+                    <div class="healthBarContainer">
+                        <div class="healthBarBase">
+                            <div class="currentHealth" data-player="computer"></div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="consoleOuter">
+                <div class="consoleInner">
+                    <div class="consoleTextBox">
+                        <p id="consoleText">
+                            ...
+                        </p>
                     </div>
                 </div>
             </div>

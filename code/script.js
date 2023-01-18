@@ -1,9 +1,13 @@
-let userHealth = 3;
-let computerHealth = 3;
+let MAX_HEALTH = 4;
+
+let userHealth = MAX_HEALTH;
+let computerHealth = MAX_HEALTH;
 
 let TEXT_TYPE_INDEX = 0;
-let TEXT_TYPE_SPEED = 25;
+let TEXT_TYPE_SPEED = 15;
 let TEXT_TYPE_TEXT = ""
+
+let timeoutHandler;
 
 function getComputerChoice() {
     const computerChoices = ["rock", "paper", "scissors"];
@@ -40,8 +44,10 @@ function playRound(event) {
         result = -1;
     }
 
+    transformSprites(result);
     displayRoundResults(result, playerSelection, computerSelection);
     updateScore(result);
+    
 }
 
 function displayRoundResults(result, playerSelection, computerSelection) {
@@ -58,20 +64,24 @@ function displayRoundResults(result, playerSelection, computerSelection) {
 
 function updateScore(result) {
     if (result > 0) {
-        const computerHealthCounter = document.querySelector('div[data-player="computer"] > p.health');
+        const computerHealthCounter = document.querySelector('div.healthBarBase > div[data-player="computer"]');
         computerHealth -= 1;
-        computerHealthCounter.textContent = computerHealth;
+        computerHealthCounter.style.width = `${(computerHealth * 100) / MAX_HEALTH}%`;
 
         if (computerHealth === 0) {
+            const computerSprite = document.querySelector('img.characterSprite[data-type="computer"]');
+            computerSprite.classList.add("computerDeath");
             winConditionMet(1);
         }
     }
     else if (result < 0) {
-        const userHealthCounter = document.querySelector('div[data-player="user"] > p.health');
+        const userHealthCounter = document.querySelector('div.healthBarBase > div[data-player="user"]');
         userHealth -= 1;
-        userHealthCounter.textContent = userHealth;
+        userHealthCounter.style.width = `${(userHealth * 100) / MAX_HEALTH}%`;
 
         if (userHealth === 0) {
+            const playerSprite = document.querySelector('img.characterSprite[data-type="user"]');
+            playerSprite.classList.add("userDeath");
             winConditionMet(0);
         }
     }
@@ -96,12 +106,12 @@ function winConditionMet(outcome) {
     }
 
     // add reload page button
-    const mainContainer = document.querySelector('.mainContainer');
+    const consoleContainer = document.querySelector('.consoleTextBox');
     const reloadButton = document.createElement('button');
-    reloadButton.textContent = "Try again?";
+    reloadButton.textContent = "Retry?";
     reloadButton.addEventListener('click', reloadPage);
-
-    mainContainer.appendChild(reloadButton);
+    reloadButton.classList.add('retryButton');
+    consoleContainer.appendChild(reloadButton);
 }
 
 function reloadPage() {
@@ -125,15 +135,47 @@ function typeOutChar() {
     }
 }
 
-// Adding an event listener to each of the buttons
+function transformSprites(result) {
+    const playerSprite = document.querySelector('img.characterSprite[data-type="user"]');
+    const computerSprite = document.querySelector('img.characterSprite[data-type="computer"]');
+
+    if (result > 0) {
+        playerSprite.classList.add("userAttack");
+        computerSprite.classList.add("computerDamage");
+    }
+    else if (result < 0) {
+        playerSprite.classList.add("userDamage");
+        computerSprite.classList.add("computerAttack");
+    }
+    else {
+        playerSprite.classList.add("userAttack");
+        computerSprite.classList.add("computerAttack");
+    }
+}
+
+function removeTransition(e) {
+    if (e.propertyName != "transform") return;
+
+    if (this.dataset.type === "user") {
+        this.classList.remove("userAttack", "userDamage");
+    }
+    
+    if (this.dataset.type === "computer") {
+        this.classList.remove("computerAttack", "computerDamage");
+    }
+}
+
+
 const choiceButtons = document.querySelectorAll('button.choiceButton');
 
+// Play a round on click
 choiceButtons.forEach((button) => {
     button.addEventListener('click', playRound);
 });
 
-// Setting the health of player and computer
-const computerHealthCounter = document.querySelector('div[data-player="computer"] > p.health');
-const userHealthCounter = document.querySelector('div[data-player="user"] > p.health');
-computerHealthCounter.textContent = computerHealth;
-userHealthCounter.textContent = userHealth;
+// Add on transition-end event listener to revert images to their original states
+const sprites = document.querySelectorAll("div.spriteContainer > img.characterSprite");
+
+sprites.forEach((sprite) => {
+    sprite.addEventListener('transitionend', removeTransition)
+});
