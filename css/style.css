@@ -14,6 +14,9 @@ p {
     background-color: rgb(223, 225, 218);
     height: 200vh;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .header {
@@ -25,6 +28,68 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+}
+
+.content {
+    height: 80vh;
+    background-color: aquamarine;
+    padding: 0 3%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+}
+
+.playingArea {
+    background-color: brown;
+    width: 100%;
+    flex: 0 1 500px;
+}
+
+.consoleOuter {
+    /*
+    
+    
+    
+    
+    
+    justify-content: space-around;*/
+    width: 70%;
+    /*display: flex;*/
+    border: 3px solid rgb(141, 144, 156);
+    flex: 0 1 150px;
+    border-radius: 10px;
+    background-color: rgb(89, 110, 169);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*padding: 10px;*/
+}
+
+.consoleInner {
+    border: 3px solid rgb(141, 144, 156);
+    background-color: rgb(251, 147, 0);
+    width: 98.5%;
+    height: 88%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.consoleTextBox {
+    /*
+    border-left: 8px solid rgb(252, 248, 24);
+    border-right: 8px solid rgb(252, 248, 24);
+    height: 100%;
+    width: 90%;*/
+    background-color: white;
+    border-left: 10px solid rgb(250, 227, 28);
+    border-right: 10px solid rgb(250, 227, 28);
+    width: 95%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 15px;
 }
 
 .scoreDisplay {
@@ -46,4 +111,8 @@ p {
 
 .adviceText {
     font-size: 24px;
+}
+
+#consoleText {
+    font-size: 36px;
 }

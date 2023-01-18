@@ -1,6 +1,10 @@
 let userHealth = 3;
 let computerHealth = 3;
 
+let TEXT_TYPE_INDEX = 0;
+let TEXT_TYPE_SPEED = 25;
+let TEXT_TYPE_TEXT = ""
+
 function getComputerChoice() {
     const computerChoices = ["rock", "paper", "scissors"];
 
@@ -106,6 +110,23 @@ function winConditionMet(outcome) {
 
 function reloadPage() {
     location.reload();
+}
+
+function typeToConsole(text) {
+    document.querySelector('p#consoleText').textContent = "";
+    TEXT_TYPE_INDEX = 0;
+    TEXT_TYPE_TEXT = text;
+
+    typeOutChar();
+}
+
+function typeOutChar() {
+    if (TEXT_TYPE_INDEX < TEXT_TYPE_TEXT.length) {
+        const paragraph = document.querySelector('p#consoleText');
+        paragraph.textContent += TEXT_TYPE_TEXT.charAt(TEXT_TYPE_INDEX);
+        TEXT_TYPE_INDEX++;
+        setTimeout(typeOutChar, TEXT_TYPE_SPEED);
+    }
 }
 
 // Adding an event listener to each of the buttons
