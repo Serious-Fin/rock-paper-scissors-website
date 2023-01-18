@@ -45,6 +45,7 @@ p {
     width: 100%;
     flex: 0 1 500px;
     display: flex;
+    justify-content: space-evenly;
 }
 
 .buttonContainer {
@@ -54,6 +55,14 @@ p {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.characterContainer {
+    background-color: green;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .consoleOuter {
